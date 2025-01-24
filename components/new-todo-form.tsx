@@ -10,7 +10,7 @@ import { createTodoAction } from "@/lib/actions";
 
 export const NewTodoForm = () => {
   const [validationError, setValidationError] = useState({ title: "" });
-  const [state, dispatch, insPending] = useActionState(createTodoAction, {
+  const [state, dispatch, isPending] = useActionState(createTodoAction, {
     success: "",
     error: undefined,
   });
@@ -27,6 +27,7 @@ export const NewTodoForm = () => {
     dispatch(formData);
   };
 
+  
   useEffect(() => {
     if (state.error) {
       toast.error(state.error);
@@ -39,6 +40,7 @@ export const NewTodoForm = () => {
     }
   }, [state.success]);
 
+  
   function validate(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
     if (name === "title") {
@@ -69,7 +71,7 @@ export const NewTodoForm = () => {
           )}
         </div>
 
-        <Button type="submit">{insPending ? "Adding..." : "Add Task"}</Button>
+        <Button type="submit">{isPending ? "Adding..." : "Add Task"}</Button>
       </div>
     </form>
   );

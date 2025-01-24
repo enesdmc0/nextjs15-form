@@ -11,7 +11,7 @@ import { updateTodoAction } from "@/lib/actions";
 export const TodoItem = ({ todo }: { todo: Todo }) => {
   const handleChange = async (isCompleted: boolean) => {
     const result = await updateTodoAction(todo.id, isCompleted);
-    console.log(result);
+    
     if (result.error) {
       toast.error("An error occurred while updating the todo");
     }
